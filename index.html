@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Energy Anomaly Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>System Login</h2>
+            <input type="password" id="password" placeholder="Enter Password (admin123)">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <div id="dashboard" class="dashboard hidden">
+        <nav class="sidebar">
+            <h2><i class="fas fa-bolt"></i> EnergySync</h2>
+            <ul>
+                <li class="active"><i class="fas fa-chart-line"></i> Dashboard</li>
+                <li><i class="fas fa-exclamation-triangle"></i> Alerts</li>
+                <li><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" onchange="toggleTheme()"/>
+                    <div class="slider round"></div>
+                </label>
+                <em>Dark Mode</em>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header>
+                <h1>Dashboard Overview</h1>
+                <div class="header-actions">
+                    <span id="health-status" class="health-badge healthy"><i class="fas fa-check-circle"></i> System Healthy</span>
+                    <button class="btn btn-export" onclick="exportCSV()"><i class="fas fa-download"></i> Export CSV</button>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Current Power</h3>
+                    <div class="value" id="current-power">0 W</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Daily Total</h3>
+                    <div class="value" id="daily-total">0 kWh</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Est. Monthly Bill</h3>
+                    <div class="value" id="monthly-bill">$0.00</div>
+                </div>
+                <div class="stat-card alert-card">
+                    <h3>Anomalies Detected</h3>
+                    <div class="value anomaly-val" id="anomaly-count">0</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="energyChart"></canvas>
+            </div>
+
+            <div class="alerts-section">
+                <h2>Recent Alerts</h2>
+                <div class="alerts-list" id="alerts-list">
+                    <!-- Alerts will be injected here -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
